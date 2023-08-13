@@ -1,15 +1,15 @@
 const BaseError = require("./baseError")
 const httpStatusCodes = require("./httpStatusCode")
 
-class Api404Error extends BaseError {
+class Api500Error extends BaseError {
     constructor(
         name,
-        statusCode = httpStatusCodes.NOT_FOUND,
-        description = "Not Found",
+        statusCode = httpStatusCodes.INTERNAL_SERVER_ERROR,
+        description = "Internal Server Error",
         isOperational = true
     ) {
         super(name, statusCode, description, isOperational)
     }
 }
 
-module.exports = Api404Error
+module.exports = Api500Error

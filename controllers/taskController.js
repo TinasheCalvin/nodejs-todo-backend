@@ -1,16 +1,14 @@
 const { default: Api404Error } = require('../errors/404Error')
 const Task = require('../models/task')
 
-async function addTask(req,res) {
+async function addTask(req,res,next) {
     let task = new Task(req.body)
     try {
         let newTask = await task.save()
         return res.status(200).send(newTask)
     }
-    catch {
-        return res.status(400).send({
-            message: 'Failed to create new task'
-        })
+    catch (err) {
+        next(err)
     }
 }
 
